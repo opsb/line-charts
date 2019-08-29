@@ -1,5 +1,6 @@
 module Docs.Line.Example4 exposing (main)
 
+import Browser
 import Html
 import Html.Attributes exposing (class)
 import LineChart
@@ -21,7 +22,7 @@ import LineChart.Axis.Intersection as Intersection
 import Color.Manipulate as Manipulate
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
   Browser.sandbox
     { init = init

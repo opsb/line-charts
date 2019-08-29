@@ -1,4 +1,4 @@
-module Explanation.Ranges exposing (main)
+module Explanation.SvgAndDataSpace exposing (main)
 
 
 import Html
@@ -98,7 +98,7 @@ customJunk system =
 pointToString : Coordinate.Point -> String
 pointToString { x, y } =
   let round10 n = toFloat (round (n * 10)) / 10 in
-  "( " ++ toString (round10 x) ++ ", " ++ toString (round10 y) ++ " )"
+  "( " ++ String.fromFloat (round10 x) ++ ", " ++ String.fromFloat (round10 y) ++ " )"
 
 
 

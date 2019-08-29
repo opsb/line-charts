@@ -84,7 +84,7 @@ customTick direction n =
     , length = 10
     , grid = True
     , direction = direction
-    , label = Just <| Junk.label Color.black (toString labelNumber)
+    , label = Just <| Junk.label Color.black (String.fromFloat labelNumber)
     }
 
 

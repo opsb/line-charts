@@ -1,5 +1,6 @@
 module Docs.Junk.Example2 exposing (main)
 
+import Browser
 import Html
 import Svg
 import Svg.Attributes
@@ -22,7 +23,7 @@ import LineChart.Axis.Intersection as Intersection
 
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
   Browser.sandbox
     { init = init
@@ -99,9 +100,9 @@ chart model =
 
 
 junk : Maybe Coordinate.Point -> Coordinate.System -> Junk.Layers msg
-junk hovered system =
+junk maybeHovered system =
   { below =
-      case hovered of
+      case maybeHovered of
         Just hovered -> [ sectionBand hovered system ]
         Nothing      -> []
   , above = []
