@@ -51,27 +51,27 @@ chart =
 
 xAxisConfig : Axis.Config Data msg
 xAxisConfig =
-  Axis.time 650 "Date" .date
+  Axis.time Time.utc 650 "Date" (toFloat << Time.posixToMillis << .date)
   -- Change the `dateInterval` function to change the dates!
 
 
-dateInterval : Int -> Time.Time
+-- Creates a magic time interval
+dateInterval : Float -> Time.Posix
 dateInterval i =
-  -- 4 * year + toFloat i * 21 * year
-  -- 20 * day + toFloat i * 8 * day
-  4 * Time.hour + toFloat i * 21 * Time.hour
+  let
+    magicHoursInterval =
+      4 + i * 21 -- Feel free to change this
+  in
+  magicHoursInterval |> hoursToMillis |> Time.millisToPosix
 
 
-day : Time.Time
-day =
-  24 * Time.hour
+-- Converts hours to miliseconds
+hoursToMillis : Float -> Int
+hoursToMillis h =
+  h * millisPerHour |> round
 
-
-year : Time.Time
-year =
-  356 * day
-
-
+millisPerHour =
+  60 * 60 * 1000
 
 -- DATA
 
@@ -81,7 +81,7 @@ type alias Data =
   , weight : Float
   , height : Float
   , income : Float
-  , date : Time.Time
+  , date : Time.Posix
   }
 
 

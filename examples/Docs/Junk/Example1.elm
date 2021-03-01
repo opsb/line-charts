@@ -1,5 +1,6 @@
 module Docs.Junk.Example1 exposing (main)
 
+import Browser
 import Html
 import LineChart
 import LineChart.Junk as Junk
@@ -19,7 +20,7 @@ import LineChart.Axis.Intersection as Intersection
 
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
   Browser.sandbox
     { init = init
@@ -77,8 +78,8 @@ chart model =
     , events = Events.hoverOne Hover
     , junk =
         Junk.hoverOne model.hovered
-          [ ( "Age", toString << .age )
-          , ( "Weight", toString << .weight )
+          [ ( "Age", String.fromFloat << .age )
+          , ( "Weight", String.fromFloat << .weight )
           ]
     , grid = Grid.default
     , area = Area.default
